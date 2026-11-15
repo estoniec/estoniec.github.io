@@ -275,7 +275,59 @@ h1 span::after {
 .project p:not(.eyebrow), .experience p:not(.eyebrow) { color: var(--muted); }
 .project code { color: var(--accent); }
 .project .tags { margin-top: auto; }
-.project-linked .eyebrow { padding-inline-end: 2.4rem; }
+.project-mark {
+  display: grid;
+  place-items: center;
+  align-self: flex-start;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--accent);
+  background: var(--tint);
+  border: 1px solid var(--tint-line);
+  border-radius: .65rem;
+}
+.project-mark-dedup {
+  align-content: center;
+  gap: 2px;
+}
+.project-mark-dedup span {
+  width: 1.15rem;
+  height: .28rem;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+}
+.project-mark-dedup span:last-child { border-style: dashed; }
+.project-mark-chip {
+  background-image:
+    repeating-linear-gradient(to bottom, currentColor 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(to right, currentColor 0 1px, transparent 1px 4px);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 1.35rem .56rem, .56rem 1.35rem;
+}
+.project-mark-chip::before {
+  content: '';
+  width: .9rem;
+  height: .9rem;
+  border: 2px solid currentColor;
+  border-radius: .2rem;
+  background: var(--tint);
+}
+.project-linked:is(:hover, :focus-within) .project-mark-chip::before {
+  background: radial-gradient(circle, currentColor 1.5px, var(--tint) 2px);
+}
+.project-mark-api { font: 700 1rem ui-monospace, monospace; }
+.project-mark-chat::before {
+  content: '';
+  width: 1.3rem;
+  height: .95rem;
+  border: 1.5px solid currentColor;
+  border-radius: .32rem .32rem .32rem .06rem;
+  background:
+    radial-gradient(circle, currentColor 1.5px, transparent 2px) left center / 33.333% 100% no-repeat,
+    radial-gradient(circle, currentColor 1px, transparent 1.5px) left center / 33.333% 100% repeat-x;
+}
 .project-link { color: inherit; text-decoration: none; }
 .project-linked:focus-within { outline: 3px solid var(--accent); outline-offset: 4px; }
 .project-link:focus-visible { outline: none; }
@@ -359,6 +411,9 @@ h1 span::after {
   .contact .arrow { transition: transform 160ms ease-out; }
   .contact:focus-visible .arrow { transform: translate(2px, -2px); }
   .project-link-icon { transition: transform 160ms ease-out; }
+  .project-mark { transition: transform 180ms ease-out; }
+  .project-linked:focus-within .project-mark { transform: translateY(-2px) rotate(-6deg); }
+  .project-linked:focus-within .project-mark-chat::before { animation: chat-dots 650ms steps(2, end); }
   .project-linked:focus-within .project-link-icon { transform: translate(2px, -2px); }
 }
 
@@ -382,10 +437,16 @@ h1 span::after {
   .hero-actions .action-secondary:hover span { transform: translate(2px, -2px); }
   .contact:hover .arrow { transform: translate(2px, -2px); }
   .project-linked:hover .project-link-icon { transform: translate(2px, -2px); }
+  .project-linked:hover .project-mark { transform: translateY(-2px) rotate(-6deg); }
+  .project-linked:hover .project-mark-chat::before { animation: chat-dots 650ms steps(2, end); }
   .hockey-note::after { transition: transform 320ms ease-out; }
   .hockey-note:hover::after { transform: translate(1.55rem, -50%); }
   .about-copy .tags li { transition: transform 100ms ease-out, box-shadow 100ms ease-out; }
   .about-copy .tags li:hover { transform: translateY(2px); }
+}
+
+@keyframes chat-dots {
+  to { background-position: right center, left center; }
 }
 
 @media (max-width: 991.98px) {
