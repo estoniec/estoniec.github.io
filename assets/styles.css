@@ -34,6 +34,7 @@ body {
 
 a { color: var(--accent); text-underline-offset: .25em; }
 a:hover { color: var(--accent-hover); }
+::selection { background: var(--accent); color: var(--on-accent); }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
 a.btn:focus-visible, button.btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
 p, li { text-wrap: pretty; }
@@ -69,7 +70,10 @@ p, li { text-wrap: pretty; }
   font-size: .7rem;
 }
 .menu a, .theme-toggle { font-size: .88rem; }
-.menu a:hover { text-decoration: underline; }
+.menu a {
+  background: linear-gradient(var(--accent), var(--accent)) left bottom / 0 2px no-repeat;
+}
+.menu a:is(:hover, :focus-visible) { background-size: 100% 2px; }
 .theme-toggle, .action-secondary {
   --bs-btn-color: var(--bs-body-color);
   --bs-btn-border-color: var(--line);
@@ -108,20 +112,7 @@ p, li { text-wrap: pretty; }
 .location::before { content: ''; width: .48rem; height: .48rem; border-radius: 50%; background: var(--accent); }
 h1, h2, h3 { font-weight: 750; letter-spacing: -.045em; text-wrap: balance; }
 h1 { font-size: clamp(4rem, 9vw, 8.4rem); line-height: .88; margin-block: 1.25rem 1.65rem; }
-h1 span {
-  position: relative;
-  color: var(--accent);
-}
-h1 span::after {
-  content: '';
-  position: absolute;
-  inset-inline-start: 100%;
-  inset-block-end: .18em;
-  width: .28em;
-  height: .055em;
-  background: currentColor;
-  opacity: 0;
-}
+h1 span { color: var(--accent); }
 .hero-role { font-size: clamp(1.15rem, 2vw, 1.45rem); font-weight: 650; line-height: 1.35; }
 .hero-description { color: var(--muted); max-width: 32rem; }
 .hero-actions { margin-top: 1.65rem; }
@@ -401,9 +392,10 @@ h1 span::after {
 .contact span:not(.arrow) { grid-row: 2; color: var(--muted); font-size: .85rem; }
 .contact .arrow { grid-column: 2; grid-row: 1 / span 2; align-self: center; color: var(--accent); }
 .footer { padding-block: 1.2rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+.footer .text-link span { display: inline-block; }
 
 @media (prefers-reduced-motion: no-preference) {
-  h1 span::after { transition: opacity 160ms ease-out; }
+  .menu a { transition: background-size 160ms ease-out; }
   .portrait { transition: transform 220ms ease-out; }
   .hero-actions .btn span { transition: transform 160ms ease-out; }
   .hero-actions .action-primary:focus-visible span { transform: translateY(3px); }
@@ -412,13 +404,15 @@ h1 span::after {
   .contact:focus-visible .arrow { transform: translate(2px, -2px); }
   .project-link-icon { transition: transform 160ms ease-out; }
   .project-mark { transition: transform 180ms ease-out; }
+  .project-mark-dedup span:last-child { transition: transform 200ms ease-out, opacity 200ms ease-out; }
+  .project-linked:focus-within .project-mark-dedup span:last-child { transform: translateY(-6px); opacity: 0; }
   .project-linked:focus-within .project-mark { transform: translateY(-2px) rotate(-6deg); }
   .project-linked:focus-within .project-mark-chat::before { animation: chat-dots 650ms steps(2, end); }
   .project-linked:focus-within .project-link-icon { transform: translate(2px, -2px); }
+  .footer .text-link:focus-visible span { animation: arrow-hop 420ms ease-out; }
 }
 
 @media (hover: hover) {
-  h1:hover span::after { opacity: 1; }
   .hockey-note:hover { --goal-color: #e16950; }
   .about-copy .tags li:hover {
     background: var(--tint);
@@ -438,11 +432,17 @@ h1 span::after {
   .contact:hover .arrow { transform: translate(2px, -2px); }
   .project-linked:hover .project-link-icon { transform: translate(2px, -2px); }
   .project-linked:hover .project-mark { transform: translateY(-2px) rotate(-6deg); }
+  .project-linked:hover .project-mark-dedup span:last-child { transform: translateY(-6px); opacity: 0; }
   .project-linked:hover .project-mark-chat::before { animation: chat-dots 650ms steps(2, end); }
   .hockey-note::after { transition: transform 320ms ease-out; }
   .hockey-note:hover::after { transform: translate(1.55rem, -50%); }
   .about-copy .tags li { transition: transform 100ms ease-out, box-shadow 100ms ease-out; }
   .about-copy .tags li:hover { transform: translateY(2px); }
+  .footer .text-link:hover span { animation: arrow-hop 420ms ease-out; }
+}
+
+@keyframes arrow-hop {
+  45% { transform: translateY(-.4rem); }
 }
 
 @keyframes chat-dots {
