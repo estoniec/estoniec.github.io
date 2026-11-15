@@ -7,8 +7,8 @@
   <title>Лилль Макар</title>
   <script src="./assets/theme.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css" integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
-  <link rel="stylesheet" href="./assets/styles.css">
-  <script src="./assets/interactions.js" defer></script>
+  <link rel="stylesheet" href="./assets/styles.css?v=7803d070">
+  <script src="./assets/interactions.js?v=0c0910eb" defer></script>
 </head>
 <body id="top">
   <div class="reading-progress" aria-hidden="true"></div>
@@ -88,7 +88,7 @@
   ],
   "goal": "Решать задачи, где нужен нестандартный подход"
 }</code></pre>
-        <p class="hockey-note"><button class="hockey-rink" type="button" aria-label="Зафиксировать шайбу" aria-pressed="false" disabled><span class="hockey-puck" aria-hidden="true"></span></button>Вне программирования играю в хоккей в студенческой лиге.</p>
+        <p class="hockey-note"><span class="hockey-rink" aria-hidden="true"></span>Вне программирования играю в хоккей в студенческой лиге.</p>
         <ul class="tags" aria-label="Технологии">
           <li>Go</li><li>Rust</li><li>C</li><li>Linux</li><li>Docker</li><li>PostgreSQL</li><li>gRPC</li><li>CI/CD</li>
         </ul>
@@ -105,7 +105,7 @@
           <article class="card project project-linked featured">
             <span class="project-tab" aria-hidden="true">Rust</span>
             <div>
-              <button class="project-mark project-mark-dedup" type="button" aria-label="Выделить проект «Дедупликация SBC»" disabled><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+              <span class="project-mark project-mark-dedup" aria-hidden="true"><span></span><span></span><span></span></span>
               <p class="eyebrow">Летняя школа СПбГУ · июль — август 2026</p>
               <h3>
                 <a class="project-link stretched-link" href="https://github.com/estoniec/marline">
@@ -120,27 +120,16 @@
               </div>
               <ul class="tags" aria-label="Технологии"><li>Rust</li><li>Palantir</li></ul>
             </div>
-            <div>
-              <div class="project-result">
-                <strong>1,3 ГБ → ≈440 МБ</strong>
-                <span>Размер данных исходного кода ядра Linux в эксперименте с дедупликацией</span>
-              </div>
-              <div class="project-demo dedup-demo" hidden>
-                <p>Нажми на повторяющиеся блоки.</p>
-                <div class="dedup-blocks">
-                  <span>A</span><span>B</span><span>C</span>
-                  <button type="button" aria-label="Объединить повтор блока A">A</button>
-                  <button type="button" aria-label="Объединить повтор блока B">B</button>
-                </div>
-                <output id="dedup-size" aria-live="polite">Размер примера · 5 КБ</output>
-              </div>
+            <div class="project-result">
+              <strong>1,3 ГБ → ≈440 МБ</strong>
+              <span>Размер данных исходного кода ядра Linux в эксперименте с дедупликацией</span>
             </div>
           </article>
         </div>
         <div class="col-md-6 col-lg-4">
           <article class="card project project-linked h-100">
             <span class="project-tab" aria-hidden="true">C</span>
-            <button class="project-mark project-mark-chip" type="button" aria-label="Выделить проект prandom" disabled></button>
+            <span class="project-mark project-mark-chip" aria-hidden="true"></span>
             <p class="eyebrow">Курсовая работа · СПбГУ</p>
             <h3>
               <a class="project-link stretched-link" href="https://github.com/estoniec/prandom">
@@ -153,17 +142,13 @@
               <p>Написал на C <strong>модуль ядра Linux</strong>, который через <code>/dev/gfrandom</code> выдаёт псевдослучайные байты.</p>
               <p>Генератор использует регистр сдвига с линейной обратной связью над полем Галуа GF(2⁸). Фиксированные начальные данные позволяют воспроизводить последовательности в тестах.</p>
             </div>
-            <div class="project-demo random-demo" hidden>
-              <button type="button" class="demo-button">Случайный байт</button>
-              <output id="random-byte" aria-live="polite">0x··</output>
-            </div>
             <ul class="tags" aria-label="Технологии"><li>C</li><li>Linux kernel</li><li>GF(2⁸)</li></ul>
           </article>
         </div>
         <div class="col-md-6 col-lg-4">
           <article class="card project project-linked h-100">
             <span class="project-tab" aria-hidden="true">Go</span>
-            <button class="project-mark project-mark-api" type="button" aria-expanded="false" aria-controls="api-example" aria-label="Показать пример запроса" disabled>{ }</button>
+            <span class="project-mark project-mark-api" aria-hidden="true">{}</span>
             <p class="eyebrow">Личный проект · декабрь 2023 — октябрь 2024</p>
             <h3>
               <a class="project-link stretched-link" href="https://github.com/estoniec/govk">
@@ -176,18 +161,13 @@
               <p>Разработал <strong>интерфейс для вызова методов VK API</strong> на Go по мотивам библиотеки vk-io.</p>
               <p>Добавил генерацию кода для новых методов из схемы API.</p>
             </div>
-            <div class="project-demo api-example" id="api-example" hidden>
-              <p>Пример запроса на Go</p>
-              <pre><code>endpoint := "https://api.vk.com/method/users.get"
-req, err := http.NewRequest(http.MethodGet, endpoint, nil)</code></pre>
-            </div>
             <ul class="tags" aria-label="Технологии"><li>Go</li><li>REST API</li><li>VK API</li></ul>
           </article>
         </div>
         <div class="col-md-6 col-lg-4">
           <article class="card project project-linked h-100">
             <span class="project-tab" aria-hidden="true">Go</span>
-            <button class="project-mark project-mark-chat" type="button" aria-expanded="false" aria-controls="bot-answer" aria-label="Спросить библиотечного бота" disabled></button>
+            <span class="project-mark project-mark-chat" aria-hidden="true"></span>
             <p class="eyebrow">Личный проект · сентябрь — декабрь 2023</p>
             <h3>
               <a class="project-link stretched-link" href="https://github.com/estoniec/libraryProject">
@@ -200,28 +180,42 @@ req, err := http.NewRequest(http.MethodGet, endpoint, nil)</code></pre>
               <p>Сделал Telegram-бота <strong>для выдачи и учёта книг</strong>.</p>
               <p>Разделил систему на микросервисы с gRPC, добавил хранение данных в PostgreSQL и сессии в Redis. Все сервисы запускаются через Docker Compose.</p>
             </div>
-            <div class="project-demo bot-answer" id="bot-answer" role="status"></div>
             <ul class="tags" aria-label="Технологии"><li>Go</li><li>gRPC</li><li>PostgreSQL</li><li>Redis</li></ul>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section row align-items-start" id="experience" aria-labelledby="experience-title">
-      <div class="col-lg-4"><h2 id="experience-title">Учёба и выступления</h2></div>
-      <div class="col-lg-8">
-        <article class="experience">
-          <p class="eyebrow">Февраль — май 2026 · VK и матмех СПбГУ</p>
-          <h3>Backend-разработка на Go</h3>
-          <p>На практическом курсе <strong>разрабатывал микросервисное приложение</strong>, работал с конкурентностью и внешними API, развёртывал сервисы в контейнерах.</p>
-        </article>
-        <article class="experience">
-          <h3>Выступления</h3>
-          <ul>
-            <li><strong>Летняя проектная школа программирования СПбГУ</strong> — исследование алгоритмов дедупликации SBC.</li>
-            <li><strong>Неделя профориентации в ОЦ «Кванториум»</strong> — Telegram-бот для школьной библиотеки.</li>
-          </ul>
-        </article>
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <h2 id="experience-title">Учёба и выступления</h2>
+      <div class="row g-3">
+        <div class="col-lg-5">
+          <article class="experience-card h-100">
+            <p class="eyebrow experience-label">Практический курс</p>
+            <h3>Backend-разработка на Go</h3>
+            <p class="experience-meta">VK и матмех СПбГУ · февраль — май 2026</p>
+            <ul class="course-topics">
+              <li>Разрабатывал микросервисное приложение</li>
+              <li>Работал с конкурентностью и внешними API</li>
+              <li>Развёртывал сервисы в контейнерах</li>
+            </ul>
+          </article>
+        </div>
+        <div class="col-lg-7">
+          <article class="experience-card h-100">
+            <p class="eyebrow experience-label">Выступления</p>
+            <ul class="talk-list">
+              <li>
+                <p class="experience-meta">Летняя проектная школа программирования СПбГУ</p>
+                <h3>Исследование алгоритмов дедупликации SBC</h3>
+              </li>
+              <li>
+                <p class="experience-meta">Неделя профориентации в ОЦ «Кванториум»</p>
+                <h3>Telegram-бот для школьной библиотеки</h3>
+              </li>
+            </ul>
+          </article>
+        </div>
       </div>
     </section>
 
